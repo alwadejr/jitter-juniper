@@ -25,5 +25,18 @@ namespace Jitter.Models
             var query = from users in _context.JitterUsers select users;
             return query.ToList();
         }
+
+        public JitterUser GetUserByHandle(string handle)
+        {
+            //SQL: select * from JitterUsers where JitterUser.Handle = handle;
+          //  var query = from user in _context.JitterUsers where user.Handle == handle select user;
+            IQueryable<JitterUser> query = from user in _context.JitterUsers where user.Handle == handle select user;
+
+            return query.SingleOrDefault<JitterUser>();
+
+            //throw new NotImplementedException();
+        }
+
+       
     }
 }
